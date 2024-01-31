@@ -14,7 +14,6 @@ const SearchBar = () => {
       const response = await axios.get(
         `http://localhost:5000/search?q=${event.target.value}`
       );
-
       setResults(response.data);
     } else {
       setResults([]);

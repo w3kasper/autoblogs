@@ -25,7 +25,7 @@ app.post("/blogs", async (req, res) => {
   }
 });
 
-// //get all the blogs
+// //get all the blogs - NOT USED
 // app.get("/blogs", async (req, res) => {
 //   try {
 //     const allBlogs = await pool.query("SELECT * FROM blogs");
@@ -52,7 +52,7 @@ app.get("/blogs", async (req, res) => {
   }
 });
 
-//get a blog by id
+//get a blog by id - NOT USED (use slug instead)
 // app.get("/blogs/:id", async (req, res) => {
 //   try {
 //     const { id } = req.params;
@@ -109,7 +109,7 @@ app.put("/blogs/:id", async (req, res) => {
   }
 });
 
-// //hard delete a blog
+// //hard delete a blog - NOT USED
 // app.delete("/blogs/:id", async (req, res) => {
 //   try {
 //     const { id } = req.params;

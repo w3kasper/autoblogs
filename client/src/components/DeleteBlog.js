@@ -3,34 +3,6 @@ import React, { Fragment } from "react";
 const DeleteBlog = ({ blog }) => {
   const blog_title = blog.blog_title;
 
-  //   const softDelete = async (e) => {
-  //     e.preventDefault();
-  //     try {
-  //       const now = new Date();
-  //       const formattedDate = now.toISOString();
-  //       const body = {
-  //         deleted_at: formattedDate,
-  //       };
-  //       console.log(body);
-  //       const response = await fetch(
-  //         `http://localhost:5000/blogs/${blog.blog_id}`,
-  //         {
-  //           method: "PUT",
-  //           headers: { "Content-Type": "application/json" },
-  //           body: JSON.stringify(body),
-  //         }
-  //       );
-  //       console.log(response);
-  //       if (response.ok) {
-  //         window.location = "/"; // Refresh the page after editing
-  //       } else {
-  //         console.error("Failed to delete blog:", response.statusText);
-  //       }
-  //     } catch (err) {
-  //       console.error(err.message);
-  //     }
-  //   };
-
   const softDelete = () => {
     fetch(`http://localhost:5000/blogs/${blog.blog_id}`, {
       method: "DELETE",
@@ -40,26 +12,27 @@ const DeleteBlog = ({ blog }) => {
     window.location.reload();
   };
 
-  const hardDelete = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await fetch(
-        `http://localhost:5000/blogs/${blog.blog_id}`,
-        {
-          method: "DELETE",
-          headers: { "Content-Type": "application/json" },
-        }
-      );
-      console.log(response);
-      if (response.ok) {
-        window.location = "/"; // Refresh the page after deleting
-      } else {
-        console.error("Failed to delete blog:", response.statusText);
-      }
-    } catch (err) {
-      console.error(err.message);
-    }
-  };
+  //HARD DELETE - NOT USED
+  // const hardDelete = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     const response = await fetch(
+  //       `http://localhost:5000/blogs/${blog.blog_id}`,
+  //       {
+  //         method: "DELETE",
+  //         headers: { "Content-Type": "application/json" },
+  //       }
+  //     );
+  //     console.log(response);
+  //     if (response.ok) {
+  //       window.location = "/"; // Refresh the page after deleting
+  //     } else {
+  //       console.error("Failed to delete blog:", response.statusText);
+  //     }
+  //   } catch (err) {
+  //     console.error(err.message);
+  //   }
+  // };
 
   return (
     <Fragment>
@@ -85,7 +58,12 @@ const DeleteBlog = ({ blog }) => {
           >
             <div className="modal-header">
               <h4 className="modal-title">Delete {blog_title} </h4>
-              <button type="button" className="close" data-dismiss="modal">
+              <button
+                type="button"
+                className="close"
+                data-dismiss="modal"
+                style={{ color: "#fff" }}
+              >
                 &times;
               </button>
             </div>
@@ -121,5 +99,3 @@ const DeleteBlog = ({ blog }) => {
 };
 
 export default DeleteBlog;
-
-///////////////////////

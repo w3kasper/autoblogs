@@ -1,3 +1,5 @@
+//EDIT BLOG COMPONENT - NOT USED
+
 import React, { Fragment, useState } from "react";
 
 const EditBlog = ({ blog }) => {

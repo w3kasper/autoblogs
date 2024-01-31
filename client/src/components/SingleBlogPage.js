@@ -80,16 +80,6 @@ const SingleBlogPage = () => {
         />
       </div>
       <h2>Related Blogs</h2>
-      <ul>
-        {/* {relatedBlogs.map((relatedBlog) => (
-          <li key={relatedBlog.blog_id}>
-            <Link to={`/blogs/${relatedBlog.blog_slug}`}>
-              <img src={relatedBlog.blog_image} alt={relatedBlog.blog_title} />
-              {relatedBlog.blog_title}
-            </Link>
-          </li>
-        ))} */}
-      </ul>
       <div className="blog-container">
         <div className="blog-grid">
           {relatedBlogs.slice(0, 3).map((relatedBlog) => (

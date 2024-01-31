@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 
 const InputBlog = () => {
   const [title, setTitle] = useState("");
-  //const [slug, setSlug] = useState("insert slug");
   const [content, setContent] = useState("");
   const [image, setImage] = useState("");
 

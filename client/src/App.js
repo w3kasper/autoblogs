@@ -1,4 +1,4 @@
-//import React, { Fragment, useRef } from "react";
+import React from "react";
 import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
 import "./App.css";
 import InputBlog from "./components/InputBlog";
@@ -7,18 +7,8 @@ import SingleBlogPage from "./components/SingleBlogPage";
 
 function App() {
   return (
-    // <Fragment>
-    //   <div className="container mt-5">
-    //     <InputBlog />
-    //     <ListBlogs />
-    //   </div>
-    // </Fragment>
     <Router>
       <div>
-        {/* <nav>
-          <Link to="/">View Blogs</Link>
-          <Link to="/create">Create Blog</Link>
-        </nav> */}
         <div className="nav-container">
           <nav className="navbar">
             <Link to="/">view blogs</Link>
@@ -28,7 +18,6 @@ function App() {
         </div>
         <Routes>
           <Route path="/" element={<ListBlogs />} />{" "}
-          {/* Set the main page to list blogs */}
           <Route path="/create" element={<InputBlog />} />
           <Route path="/blogs/:slug" element={<SingleBlogPage />} />
         </Routes>
