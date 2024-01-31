@@ -44,7 +44,7 @@ _this will go into the server folder and install all dependancies, then start a 
 
 ## DATABASE RAW TEXT
 
-\*to be copy/pasted into your postgres sql db
+\*please use server/database.sql for copy pasting data.
 
 `CREATE DATABASE BlogSite;`
 
