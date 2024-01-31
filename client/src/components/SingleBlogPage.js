@@ -31,8 +31,20 @@ const SingleBlogPage = () => {
       });
   }, [slug]);
 
+  //loading
   if (!blog) {
-    return <div>Loading...</div>;
+    return (
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          marginTop: "100px",
+        }}
+      >
+        Loading...
+      </div>
+    );
   }
 
   //get status

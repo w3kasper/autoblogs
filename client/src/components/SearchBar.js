@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios"; //used to make requests to the server in search
+import { useNavigate } from "react-router-dom"; //used for link
 
 const SearchBar = () => {
   const [input, setInput] = useState("");
   const [results, setResults] = useState([]);
+  const navigate = useNavigate(); //to navigate to the blog
 
   //search for blogs by title
   const handleInputChange = async (event) => {
@@ -51,6 +53,7 @@ const SearchBar = () => {
               backgroundColor: "#f0f0f0",
               border: "2px solid rgb(82, 133, 196)",
               outline: "none",
+              color: "#242424",
             }}
           />
           <div
@@ -66,7 +69,15 @@ const SearchBar = () => {
               marginLeft: "10px",
             }}
           >
-            <img src="/search.svg" alt="Search" style={{ height: "20px" }} />
+            <img
+              src="/search.svg"
+              alt="Search"
+              style={{ height: "20px", cursor: "pointer" }}
+              onClick={() => {
+                setInput("");
+                setResults([]);
+              }}
+            />
           </div>
         </div>
         {/* POP DOWN RESULTS */}
@@ -93,7 +104,18 @@ const SearchBar = () => {
                     justifyContent: "space-between",
                   }}
                 >
-                  <span>{result.blog_title}</span>
+                  <span style={{ marginTop: "5px" }}>{result.blog_title}</span>
+                  <button
+                    onClick={() => {
+                      if (result.deleted_at === null) {
+                        navigate(`/blogs/${result.blog_slug}`);
+                      }
+                    }}
+                    disabled={result.deleted_at !== null}
+                    className="btn btn-primary"
+                  >
+                    View
+                  </button>
                 </div>
               ))}
             </div>
