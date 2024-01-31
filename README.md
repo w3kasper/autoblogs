@@ -2,7 +2,7 @@
 
 **All database and seeding info is found in server/database.sql - please use the database.sql file to copy paste into postgres - the formatting is correct**
 
-_I will paste at the bottom of readme is the raw text of database creation and seeding info_
+_pasted at the bottom of readme is the raw text of database creation and seeding info_
 
 ## PROJECT SETUP
 
