@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import axios from "axios";
+import axios from "axios"; //used to make requests to the server in search
 
 const SearchBar = () => {
   const [input, setInput] = useState("");
   const [results, setResults] = useState([]);
 
+  //search for blogs by title
   const handleInputChange = async (event) => {
     setInput(event.target.value);
     if (event.target.value.length > 0) {
@@ -17,7 +18,7 @@ const SearchBar = () => {
       setResults([]);
     }
   };
-  //console.log(results);
+
   return (
     <div>
       <input type="text" value={input} onChange={handleInputChange} />
