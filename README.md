@@ -1,7 +1,15 @@
-database info to seed
+## DATABASE MIGRATION AND SEEDING
+**All database and seeding info is found in server/database.sql**
+
+*I will link it at the bottom  of readme is the raw text of database creation and seeding info. copy/paste into postgres*
 
 
-server-5000/env file is in here
+## PROJECT SETUP
+
+git clone 
+
+###Server Setup
+
 cd autoblogs
 cd server
 npm i
