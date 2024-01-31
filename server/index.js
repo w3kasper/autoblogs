@@ -41,7 +41,7 @@ app.get("/blogs", async (req, res) => {
     const offset = (page - 1) * limit;
 
     const allBlogs = await pool.query(
-      "SELECT * FROM blogs ORDER BY published_at DESC LIMIT $1 OFFSET $2",
+      "SELECT * FROM blogs WHERE deleted_at IS NULL ORDER BY published_at DESC LIMIT $1 OFFSET $2",
       [limit, offset]
     );
     res.json(allBlogs.rows);

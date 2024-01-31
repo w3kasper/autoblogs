@@ -125,7 +125,7 @@ const ListBlogs = () => {
                 className="blog-image"
               />
 
-              <p>{getBlogStatus(blog)}</p>
+              <p className="blog-status">{getBlogStatus(blog)}</p>
               <div className="button-container">
                 <button
                   onClick={() => {

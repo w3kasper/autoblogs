@@ -137,3 +137,8 @@ a {
 .pagination-buttons button:disabled {
   opacity: 0.5;
 }
+
+.blog-status {
+  font-size: 0.8em;
+  text-align: center;
+}
