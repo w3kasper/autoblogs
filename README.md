@@ -36,7 +36,7 @@ npm i
 
 npm start
 
-_this will go into the server folder and install all dependancies, then start a react application on port 3000_
+_this will go into the client folder and install all dependancies, then start a react application on port 3000_
 
 ## IMAGES
 
