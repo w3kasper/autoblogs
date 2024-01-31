@@ -20,7 +20,9 @@ npm i
 
 nodemon index
 
-*this will go into the server folder and install all dependancies, then start nodemon/server on port 5000*
+*this will go into the server folder and install all dependancies, then start nodemon/server on port 5000.*
+
+*.env is found in this folder*
 
 ### Client Setup
 
