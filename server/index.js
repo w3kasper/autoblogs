@@ -3,11 +3,12 @@ const app = express(); // Create an express app
 const cors = require("cors"); // Import cors
 const pool = require("./db"); // Import the pool from db.js
 
-//middleware
+//MIDDLEWARE//
 app.use(cors()); // Use cors - cors is a package that allows for cross origin resource sharing
 app.use(express.json()); // Use express.json - this allows us to parse JSON data from the client
 
 //ROUTES//
+
 //create a blog
 app.post("/blogs", async (req, res) => {
   try {
@@ -34,6 +35,7 @@ app.post("/blogs", async (req, res) => {
 //   }
 // });
 
+//get all the blogs that are not deleted
 app.get("/blogs", async (req, res) => {
   try {
     const page = req.query.page || 1;
@@ -63,7 +65,22 @@ app.get("/blogs", async (req, res) => {
 //   }
 // });
 
-// Get a blog by slug
+//get by searching
+app.get("/search", async (req, res) => {
+  try {
+    const searchQuery = req.query.q;
+    //console.log(searchQuery);
+    const results = await pool.query(
+      "SELECT * FROM blogs WHERE blog_title ILIKE $1 AND deleted_at IS NULL",
+      [`%${searchQuery}%`]
+    );
+    res.json(results.rows);
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
+//get a blog by slug
 app.get("/blogs/:slug", async (req, res) => {
   try {
     const { slug } = req.params;
@@ -86,17 +103,13 @@ app.put("/blogs/:id", async (req, res) => {
       "UPDATE blogs SET blog_title = $1, blog_slug = $2, blog_content = $3, blog_image = $4, published_at = $5, updated_at = CURRENT_TIMESTAMP WHERE blog_id = $6",
       [blog_title, blog_slug, blog_content, blog_image, published_at, id]
     );
-    //const updateBlog = await pool.query(
-    //       "UPDATE blogs SET blog_title = $1, blog_slug = $2, blog_content = $3, blog_image = $4, published_at = $5 WHERE blog_id = $6",
-    //       [blog_title, blog_slug, blog_content, blog_image, published_at, id]
-    //     );
     res.json("Blog was updated");
   } catch (err) {
     console.error(err.message);
   }
 });
 
-// //delete a blog
+// //hard delete a blog
 // app.delete("/blogs/:id", async (req, res) => {
 //   try {
 //     const { id } = req.params;
@@ -109,6 +122,7 @@ app.put("/blogs/:id", async (req, res) => {
 //     console.error(err.message);
 //   }
 // });
+
 // Soft delete a blog
 app.delete("/blogs/:id", async (req, res) => {
   try {

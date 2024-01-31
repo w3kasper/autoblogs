@@ -1,43 +1,18 @@
 import React, { Fragment, useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 // import EditBlog from "./EditBlog";
 import DeleteBlog from "./DeleteBlog";
+import SearchBar from "./SearchBar";
 
 const ListBlogs = () => {
   const [blogs, setBlogs] = useState([]); // Initialize with an empty array
-  const [showDeleted, setShowDeleted] = useState(false);
-  const [page, setPage] = useState(1);
+  //const [showDeleted, setShowDeleted] = useState(false); //used if want to show deleted blogs as a toggle
+  const showDeleted = false; //used if want to show deleted blogs as a toggle
+  const [page, setPage] = useState(1); //pagination
 
   const navigate = useNavigate(); //to disable the view button when the blog is deleted
 
-  //delete function
-  //   const deleteBlog = async (id) => {
-  //     try {
-  //       const deleteBlog = await fetch(`http://localhost:5000/blogs/${id}`, {
-  //         method: "DELETE",
-  //       });
-  //       setBlogs(blogs.filter((blog) => blog.blog_id !== id));
-  //     } catch (err) {
-  //       console.error(err.message);
-  //     }
-  //   };
-
-  //get all blogs
-  // const getBlogs = async () => {
-  //   try {
-  //     const response = await fetch("http://localhost:5000/blogs");
-  //     const jsonData = await response.json();
-  //     //console.log(jsonData);
-  //     setBlogs(jsonData);
-  //   } catch (err) {
-  //     console.error(err.message);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   getBlogs();
-  // }, []);
-
+  //get all blogs that are not deleted_at
   const getBlogs = async (page) => {
     try {
       const response = await fetch(`http://localhost:5000/blogs?page=${page}`);
@@ -52,19 +27,7 @@ const ListBlogs = () => {
     getBlogs(page);
   }, [page]);
 
-  //filter deleted blogs
-  // const filteredBlogs = blogs.filter((blog) =>
-  //   showDeleted ? blog.published_at === null || blog.deleted_at !== null : true
-  // );
-
-  // const filteredBlogs = showDeleted
-  //   ? blogs
-  //   : blogs
-  //       // .filter(
-  //       //   (blog) => blog.published_at !== null && blog.deleted_at === null
-  //       // )
-  //       .sort((a, b) => new Date(b.published_at) - new Date(a.published_at));
-
+  //filter and sort blogs
   const filteredBlogs = showDeleted
     ? blogs
     : blogs.sort((a, b) => {
@@ -105,6 +68,7 @@ const ListBlogs = () => {
 
   return (
     <Fragment>
+      <SearchBar blog={blogs} />
       {/* <label>
         <input
           type="checkbox"
@@ -124,7 +88,6 @@ const ListBlogs = () => {
                 alt={blog.blog_title}
                 className="blog-image"
               />
-
               <p className="blog-status">{getBlogStatus(blog)}</p>
               <div className="button-container">
                 <button
